@@ -16,6 +16,9 @@ import termextract.core
 
 text = open('data/text_sample',encoding='utf-8',mode='r').read()
 
+# TODO: randomly pick up one keyword and print it out
+list = open('dict/sports.csv',encoding='utf-8',mode='r').read()
+
 frequency = termextract.japanese_plaintext.cmp_noun_dict(text)
 LR = termextract.core.score_lr(frequency,
         ignore_words=termextract.japanese_plaintext.IGNORE_WORDS,
