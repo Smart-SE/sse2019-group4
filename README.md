@@ -7,3 +7,5 @@
 * RaspberryPi
 * ディスプレイ(HDMI出力)
 * Python3.5 and Python2.7
+
+## Setup
