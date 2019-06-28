@@ -15,8 +15,9 @@ async def async_watch(path, file_name, callback):
     async for changes in awatch(path):
         for change in changes:
             nType, szPath = change
+            print(nType, szPath)
             if is_target(szPath, file_name) is False:
-                return;
+                """do nothing"""
             elif Change.deleted == nType:
                 await callback(None)
             else:
