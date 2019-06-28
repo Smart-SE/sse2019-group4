@@ -34,11 +34,10 @@ noun_p = termextract.core.modify_agglutinative_lang(noun)
 # print (noun_p)
 
 # OPT2: search for noun in text, based on dict.
-output_word=None
+output_word=''
 for word in list.split():
 	if word in text:
-		output_word = word
-		break
+		output_word += word + ' '
 
 print (output_word)
 file = open('data/keyword','w')
