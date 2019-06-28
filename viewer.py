@@ -11,7 +11,10 @@ loop = asyncio.get_event_loop()
 
 async def view(page, url):
     print(url)
-    await page.goto(url)
+    try:
+        await page.goto(url)
+    except:
+        """do nothing"""
 
 async def main():
     browser = None
