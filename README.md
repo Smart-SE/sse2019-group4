@@ -32,3 +32,12 @@ $ pip3 install feedparser
 $ pip3 install pyppeteer
 $ pip3 install watchgod
 ```
+### extractor.py setup
+
+termextract が必要です。
+
+$ wget http://gensen.dl.itc.u-tokyo.ac.jp/soft/pytermextract-0_01.zip
+$ unzip pytermextract-0.01.zip
+$ cd pytermextract-0.01
+$ python3 setup.py install
+
