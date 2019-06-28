@@ -11,14 +11,14 @@ import termextract.core
 # cd pytermextract-0.01
 # python3 setup.py install
 
-# reference url
-# https://qiita.com/EastResident/items/0cdc7c5ac1f0a6b3cf1d
 
-text = open('data/text_sample',encoding='utf-8',mode='r').read()
+text = open('data/text',encoding='utf-8',mode='r').read()
 
 # TODO: randomly pick up one keyword and print it out
 list = open('dict/sports.csv',encoding='utf-8',mode='r').read()
 
+# reference url
+# https://qiita.com/EastResident/items/0cdc7c5ac1f0a6b3cf1d
 frequency = termextract.japanese_plaintext.cmp_noun_dict(text)
 LR = termextract.core.score_lr(frequency,
         ignore_words=termextract.japanese_plaintext.IGNORE_WORDS,
@@ -28,7 +28,12 @@ term_imp = termextract.core.term_importance(frequency, LR)
 
 data_collection = collections.Counter(term_imp)
 noun, value = data_collection.most_common()[0]
-print (termextract.core.modify_agglutinative_lang(noun))
+noun_p = termextract.core.modify_agglutinative_lang(noun)
+
+list_p = list.replace('\n',' ')
+if noun_p in list_p:
+	print(noun_p)
+
 # debug
 #for cmp_noun, value in data_collection.most_common():
     #print(termextract.core.modify_agglutinative_lang(cmp_noun), value, sep="\t")
