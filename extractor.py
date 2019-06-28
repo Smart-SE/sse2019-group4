@@ -30,11 +30,17 @@ data_collection = collections.Counter(term_imp)
 noun, value = data_collection.most_common()[0]
 noun_p = termextract.core.modify_agglutinative_lang(noun)
 
-list_p = list.replace('\n',' ')
-if noun_p in list_p:
-	print(noun_p)
+# OPT1: show the most common word
+# print (noun_p)
 
-# debug
-#for cmp_noun, value in data_collection.most_common():
-    #print(termextract.core.modify_agglutinative_lang(cmp_noun), value, sep="\t")
-    #print(termextract.core.modify_agglutinative_lang(cmp_noun), sep="\t")
+# OPT2: search for noun in text, based on dict.
+output_word=None
+for word in list.split():
+	if word in text:
+		output_word = word
+		break
+
+print (output_word)
+file = open('data/keyword','w')
+file.write(output_word)
+file.close()
