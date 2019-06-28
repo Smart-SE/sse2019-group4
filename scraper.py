@@ -11,8 +11,8 @@ import os
 import json
 import pprint
 
-input_path = "./data/keyword.txt"
-output_path = "./data/url.txt"
+input_path = "./data/keyword"
+output_path = "./data/url"
 
 # ファイル存在チェック
 if (os.path.exists(input_path)):   
