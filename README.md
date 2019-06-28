@@ -24,9 +24,11 @@ Python 3.7+ が必要です。
 
 参考: https://qiita.com/GuitarBuilderClass/items/d6d2798bebf7b916c5c6
 
+環境によって `pip3` は読み替えをお願いします。
+
 ```
-$ pip install --upgrade pip
-$ pip install feedparser
-$ pip install pyppeteer
-$ pip install watchgod
+$ pip3 install --upgrade pip
+$ pip3 install feedparser
+$ pip3 install pyppeteer
+$ pip3 install watchgod
 ```
