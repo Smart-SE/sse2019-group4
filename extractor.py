@@ -15,6 +15,7 @@ import time
 while True:
 	start = time.time()
 	text = open('data/text',encoding='utf-8',mode='r').read()
+	text_f = text.replace('\n',' ')
 
 	# TODO: randomly pick up one keyword and print it out
 	list = open('dict/sports.csv',encoding='utf-8',mode='r').read()
@@ -38,7 +39,7 @@ while True:
 	# OPT2: search for noun in text, based on dict.
 	output_word=''
 	for word in list.split():
-		if word in text:
+		if word in text_f:
 			output_word += word + ' '
 
 	print (output_word)
