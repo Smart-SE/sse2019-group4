@@ -5,16 +5,29 @@ import asyncio
 import time
 import os
 from pyppeteer import launch
+from pyppeteer import connection
 from watcher import async_watch
 
 loop = asyncio.get_event_loop()
+
+def patch_pyppeteer():
+    original_method = connection.websockets.client.connect
+
+    def new_method(*args, **kwargs):
+        kwargs['ping_interval'] = None
+        kwargs['ping_timeout'] = None
+        return original_method(*args, **kwargs)
+
+    connection.websockets.client.connect = new_method
+
+patch_pyppeteer()
 
 async def view(page, url):
     print(url)
     try:
         await page.goto(url)
-    except:
-        """do nothing"""
+    except Exception as e:
+        print(e)
 
 async def main():
     browser = None
@@ -26,7 +39,3 @@ async def main():
     await async_watch("./data", "url", lambda text: view(page, text))
 
 loop.run_until_complete(main())
-
-
-
-
