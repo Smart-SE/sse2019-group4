@@ -18,7 +18,7 @@ while True:
 	text_f = text.replace('\n',' ')
 
 	# TODO: randomly pick up one keyword and print it out
-	list = open('dict/sports.csv',encoding='utf-8',mode='r').read()
+	list = open('dict/keyword3.csv',encoding='utf-8',mode='r').read()
 
 	# reference url
 	# https://qiita.com/EastResident/items/0cdc7c5ac1f0a6b3cf1d
@@ -38,7 +38,7 @@ while True:
 
 	# OPT2: search for noun in text, based on dict.
 	output_word=''
-	for word in list.split():
+	for word in list.split('\n'):
 		if word in text_f:
 			output_word += word + ' '
 
