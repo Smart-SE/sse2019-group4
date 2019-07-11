@@ -22,13 +22,17 @@ while True:
 		print ("INFO: data/text not found. Wait for 15 seconds...")
 		time.sleep(15-(end-start))
 		continue
+
 	if len(text) == 0:
+		print ("INFO: data/text empty. Create empty keyword file...")
+		file = open('data/keyword','w')
+		file.write('')
+		file.close()
 		end = time.time()
-		print ("INFO: data/text empty. Wait for 15 seconds...")
 		time.sleep(15-(end-start))
 		continue
-		
-	text_f = text.replace('\n',' ')
+	else:	
+		text_f = text.replace('\n',' ')
 
 	# TODO: randomly pick up one keyword and print it out
 	list = open('dict/keyword3.csv',encoding='utf-8',mode='r').read()
