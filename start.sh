@@ -1,9 +1,9 @@
 #!/bin/bash
 
-python3 ./stub/recognizer.py &
-python3 ./stub/extractor.py &
-python3 ./stub/scraper.py &
+python3 ./recognizer.py &
+python3 ./extractor.py &
+python3 ./scraper.py &
 export DISPLAY=:0.0
-python3 ./stub/viewer.py &
+python3.7 ./viewer.py &
 
 echo "process start"
