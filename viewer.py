@@ -32,10 +32,11 @@ async def view(page, url):
 async def main():
     browser = None
     if os.path.exists("/usr/bin/chromium-browser"):
-        browser = await launch(headless=False, executablePath="/usr/bin/chromium-browser")
+        browser = await launch(headless=False, executablePath="/usr/bin/chromium-browser", args=['--start-fullscreen'])
     else:
-        browser = await launch(headless=False)
+        browser = await launch(headless=False, args=['--start-fullscreen'])
     page = await browser.newPage()
+    await page.setViewport({'width': 1920, 'height': 1080})
     await async_watch("./data", "url", lambda text: view(page, text))
 
 loop.run_until_complete(main())
