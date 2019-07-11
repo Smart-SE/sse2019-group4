@@ -17,13 +17,18 @@ while True:
 	try:
 		text = open('data/text',encoding='utf-8',mode='r').read()
 	except FileNotFoundError:
+		print ("INFO: data/text not found. Create empty data/keyword...")
 		file = open('data/text',encoding='utf-8',mode='w')
+		file.write('')
+		file.close()
+		file_keyword = open('data/keyword','w')
+		file_keyword.write('')
+		file_keyword.close()
 		end = time.time()
-		print ("INFO: data/text not found. Wait for 15 seconds...")
 		time.sleep(15-(end-start))
 		continue
 
-	if len(text) == 0:
+	if len(text) == 0 or text == '\n' or text == ' ':
 		print ("INFO: data/text empty. Create empty keyword file...")
 		file = open('data/keyword','w')
 		file.write('')
