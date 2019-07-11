@@ -2,7 +2,7 @@
 Task    : #5 Keywordに対して、適切なページ（URL）を決定する
 version : 0.0.3
 author  : da-okazaki
-date    : 2019.06.22
+date    : 2019.07.11
 """
 
 import feedparser
@@ -101,4 +101,4 @@ while True:
     try:
         time.sleep(15-(end-start))
     except ValueError:
-        print("Oops: extractor.py took 15+ seconds. Skip sleep.")
+        print("scraper.py took 15+ seconds. Skip sleep.")
