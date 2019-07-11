@@ -26,7 +26,7 @@ while True:
         f.close()
         
         # 抽出後ファイル削除
-        #os.remove(input_path)
+        os.remove(input_path)
 
         # US1 (キーワードあり)
         if (keyword != "") :
