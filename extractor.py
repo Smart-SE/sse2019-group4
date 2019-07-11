@@ -14,7 +14,20 @@ import time
 
 while True:
 	start = time.time()
-	text = open('data/text',encoding='utf-8',mode='r').read()
+	try:
+		text = open('data/text',encoding='utf-8',mode='r').read()
+	except FileNotFoundError:
+		file = open('data/text',encoding='utf-8',mode='w')
+		end = time.time()
+		print ("INFO: data/text not found. Wait for 15 seconds...")
+		time.sleep(15-(end-start))
+		continue
+	if len(text) == 0:
+		end = time.time()
+		print ("INFO: data/text empty. Wait for 15 seconds...")
+		time.sleep(15-(end-start))
+		continue
+		
 	text_f = text.replace('\n',' ')
 
 	# TODO: randomly pick up one keyword and print it out
