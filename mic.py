@@ -1,11 +1,14 @@
 import os
 import time
 import threading
+import signal
+import subprocess
 
 def worker():
-    os.system('arecord -D plughw:0,0 -f cd "data/mic"')
-    time.sleep(10)
-    os.system('ps aux | grep arecord | grep -v grep | awk '{ print "kill -9", $2 }' | sh')
+    cmd = 'arecord -D plughw:0,0 -f cd "data/mic"'
+    p = subprocess.Popen(['arecord','-D', 'plughw:0,0', '-f', 'cd', 'data/mic' ], shell=False)
+    time.sleep(5)
+    os.kill(p.pid, signal.SIGKILL)
 
 def schedule(interval, f, wait=True):
     base_time = time.time()
