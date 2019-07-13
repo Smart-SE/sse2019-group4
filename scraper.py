@@ -11,6 +11,7 @@ import os
 import json
 import pprint
 import time
+import random
 
 input_path = "./data/keyword"
 output_path = "./data/url"
@@ -56,6 +57,7 @@ while True:
                     # URL Description
                     f.write(entry.link)
                     f.close()
+                    print("keyword : " + keyword + "\n" + "Date    : " + str(tmp["published"]) + "\n" + "Title   : " + tmp["title"])
                     break
 
             news = sorted(news, key=lambda x: x['sortkey'])
@@ -68,8 +70,10 @@ while True:
             # Google News Parse
             url = "https://news.google.com/rss?hl=ja&gl=JP&ceid=JP:ja"
             d = feedparser.parse(url)
-            news = list()
-            
+            news = list()            
+
+            topicRandom = random.randrange(1,10)
+
             for i, entry in enumerate(d.entries, 1) :
 
                 p = entry.published_parsed
@@ -83,19 +87,21 @@ while True:
                 }
                 news.append(tmp)
 
-                if (tmp["no"] == 1) :
+                if (tmp["no"] == topicRandom) :
                     # OutputFile Create
                     f = open(output_path,'w')
                     # URL Description
                     f.write(entry.link)
                     f.close()
+                    print("keyword : " + "Nothing" + "\n" + "Date    : " + str(tmp["published"]) + "\n" + "Title   : " + tmp["title"])
                     break
 
             news = sorted(news, key=lambda x: x['sortkey'])
             #pprint.pprint(news)
 
+
     else :
-        print ("file not exist")
+        print ("keyword file not exist")
 
     end = time.time()
     try:
