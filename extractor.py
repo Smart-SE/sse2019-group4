@@ -44,16 +44,17 @@ while True:
 
 	# reference url
 	# https://qiita.com/EastResident/items/0cdc7c5ac1f0a6b3cf1d
-	frequency = termextract.japanese_plaintext.cmp_noun_dict(text)
-	LR = termextract.core.score_lr(frequency,
-		ignore_words=termextract.japanese_plaintext.IGNORE_WORDS,
-		lr_mode=1,average_rate=1)
+	# deprecated by fukui
+	# frequency = termextract.japanese_plaintext.cmp_noun_dict(text)
+	# LR = termextract.core.score_lr(frequency,
+	#	ignore_words=termextract.japanese_plaintext.IGNORE_WORDS,
+	#	lr_mode=1,average_rate=1)
 
-	term_imp = termextract.core.term_importance(frequency, LR)
+	# term_imp = termextract.core.term_importance(frequency, LR)
 
-	data_collection = collections.Counter(term_imp)
-	noun, value = data_collection.most_common()[0]
-	noun_p = termextract.core.modify_agglutinative_lang(noun)
+	# data_collection = collections.Counter(term_imp)
+	# noun, value = data_collection.most_common()[0]
+	# noun_p = termextract.core.modify_agglutinative_lang(noun)
 
 	# OPT1: show the most common word
 	# print (noun_p)
