@@ -17,7 +17,7 @@ while True:
 	try:
 		text = open('data/text',encoding='utf-8',mode='r').read()
 	except FileNotFoundError:
-		print ("INFO: data/text not found. Create empty data/keyword...")
+		print ("extractor: INFO: data/text not found. Create empty data/keyword...")
 		file = open('data/text',encoding='utf-8',mode='w')
 		file.write('')
 		file.close()
@@ -29,7 +29,7 @@ while True:
 		continue
 
 	if len(text) == 0 or text == '\n' or text == ' ':
-		print ("INFO: data/text empty. Create empty keyword file...")
+		print ("extractor: INFO: data/text empty. Create empty keyword file...")
 		file = open('data/keyword','w')
 		file.write('')
 		file.close()
@@ -65,7 +65,7 @@ while True:
 		if word in text_f:
 			output_word += word + ' '
 
-	print (output_word)
+	print ("extractor: "+output_word)
 	file = open('data/keyword','w')
 	file.write(output_word)
 	file.close()
@@ -73,4 +73,4 @@ while True:
 	try:
 		time.sleep(15-(end-start))
 	except ValueError:
-		print("Oops: extractor.py took 15+ seconds. Skip sleep.")
+		print("extractor: Oops: extractor.py took 15+ seconds. Skip sleep.")
