@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python3 ./recognizer.py &
+python3 ./mic.py &
 python3 ./extractor.py &
 python3 ./scraper.py &
 export DISPLAY=:0.0
