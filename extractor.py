@@ -58,7 +58,17 @@ while True:
 		term_imp = termextract.core.term_importance(frequency, LR)
 
 		data_collection = collections.Counter(term_imp)
-		noun, value = data_collection.most_common()[0]
+		try:
+			noun, value = data_collection.most_common()[0]
+		except IndexError:
+			print ("extractor: INFO: No keyword found. Create empty keyword file...")
+			file = open('data/keyword','w')
+			file.write('')
+			file.close()
+			end = time.time()
+			time.sleep(15-(end-start))
+			continue
+				
 		noun_p = termextract.core.modify_agglutinative_lang(noun)
 
 		# OPT1: show the most common word
