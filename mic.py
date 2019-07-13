@@ -1,11 +1,16 @@
 import os
 import time
 import threading
+import signal
+import subprocess
 
 def worker():
-    os.system('arecord -D plughw:0,0 -f cd "data/mic"')
-    time.sleep(10)
-    os.system('ps aux | grep arecord | grep -v grep | awk '{ print "kill -9", $2 }' | sh')
+    cmd = 'arecord -D plughw:0,0 -f cd "data/mic"'
+    p = subprocess.Popen(['arecord','-D', 'plughw:0,0', '-f', 'cd', 'data/mic' ], shell=False)
+    time.sleep(5)
+    os.kill(p.pid, signal.SIGKILL)
+    p2 = subprocess.Popen(['python3', 'recognizer.py', 'data/mic'], shell=False)
+
 
 def schedule(interval, f, wait=True):
     base_time = time.time()
@@ -18,5 +23,5 @@ def schedule(interval, f, wait=True):
         next_time = ((base_time - time.time()) % interval) or interval
         time.sleep(next_time)
 
-schedule(30, worker)
+schedule(15, worker)
 

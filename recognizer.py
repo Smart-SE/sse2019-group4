@@ -60,13 +60,13 @@ def transcribe_file(speech_file):
     # テキストの初期化
     import os
     file_name = "./data/text"
-    os.remove(file_name)
+#    os.remove(file_name)
     for result in response.results:
         # The first alternative is the most likely one for this portion.
         print(u'Transcript: {}'.format(result.alternatives[0].transcript))
         # ファイルに追記書き込み
         try:
-            file = open(file_name,'a')
+            file = open(file_name,'w')
             file.write(result.alternatives[0].transcript)
         except Exception as e:
             print(e)

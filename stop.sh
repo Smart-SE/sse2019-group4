@@ -1,5 +1,5 @@
 #!/bin/bash
-pkill -f recognizer.py
+pkill -f mic.py
 pkill -f extractor.py
 pkill -f scraper.py
 pkill -f viewer.py
