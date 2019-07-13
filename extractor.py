@@ -6,12 +6,17 @@ import collections
 import termextract.japanese_plaintext
 import termextract.core
 import time
+import hashlib
 
 # how to install termextract
 # wget http://gensen.dl.itc.u-tokyo.ac.jp/soft/pytermextract-0_01.zip
 # unzip pytermextract-0.01.zip
 # cd pytermextract-0.01
 # python3 setup.py install
+
+text_hash=''
+text_hash_old=''
+sleep_time=5
 
 while True:
 	start = time.time()
@@ -26,8 +31,20 @@ while True:
 		file_keyword.write('')
 		file_keyword.close()
 		end = time.time()
-		time.sleep(15-(end-start))
+		time.sleep(sleep_time-(end-start))
 		continue
+	
+	text_hash = hashlib.md5(text.encode("utf-8")).hexdigest()
+	if text_hash == text_hash_old:
+		print ("extractor: INFO: data/text not changed. sleep...")
+		file = open('data/keyword','w')
+		file.write('')
+		file.close()
+		end = time.time()
+		time.sleep(sleep_time-(end-start))
+		continue
+	
+	text_hash_old = text_hash	
 
 	if len(text) == 0 or text == '\n' or text == ' ':
 		print ("extractor: INFO: data/text empty. Create empty keyword file...")
@@ -35,7 +52,7 @@ while True:
 		file.write('')
 		file.close()
 		end = time.time()
-		time.sleep(15-(end-start))
+		time.sleep(sleep_time-(end-start))
 		continue
 	else:	
 		text_f = text.replace('\n',' ')
@@ -67,7 +84,7 @@ while True:
 			file.write('')
 			file.close()
 			end = time.time()
-			time.sleep(15-(end-start))
+			time.sleep(sleep_time-(end-start))
 			continue
 				
 		noun_p = termextract.core.modify_agglutinative_lang(noun)
@@ -82,6 +99,6 @@ while True:
 	file.close()
 	end = time.time()
 	try:
-		time.sleep(15-(end-start))
+		time.sleep(sleep_time-(end-start))
 	except ValueError:
 		print("extractor: Oops: extractor.py took 15+ seconds. Skip sleep.")
