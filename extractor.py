@@ -42,30 +42,30 @@ while True:
 	# TODO: randomly pick up one keyword and print it out
 	list = open('dict/keyword3.csv',encoding='utf-8',mode='r').read()
 
-	# reference url
-	# https://qiita.com/EastResident/items/0cdc7c5ac1f0a6b3cf1d
-	# deprecated by fukui
-	# frequency = termextract.japanese_plaintext.cmp_noun_dict(text)
-	# LR = termextract.core.score_lr(frequency,
-	#	ignore_words=termextract.japanese_plaintext.IGNORE_WORDS,
-	#	lr_mode=1,average_rate=1)
-
-	# term_imp = termextract.core.term_importance(frequency, LR)
-
-	# data_collection = collections.Counter(term_imp)
-	# noun, value = data_collection.most_common()[0]
-	# noun_p = termextract.core.modify_agglutinative_lang(noun)
-
-	# OPT1: show the most common word
-	# print (noun_p)
-
-	# OPT2: search for noun in text, based on dict.
 	output_word=''
 	for word in list.split('\n'):
 		if word in text_f:
 			output_word += word + ' '
 
-	print ("extractor: "+output_word)
+	if output_word == '\n' or output_word == '' or output_word == ' ':
+		# reference url
+		# https://qiita.com/EastResident/items/0cdc7c5ac1f0a6b3cf1d
+		frequency = termextract.japanese_plaintext.cmp_noun_dict(text)
+		LR = termextract.core.score_lr(frequency,
+			ignore_words=termextract.japanese_plaintext.IGNORE_WORDS,
+			lr_mode=1,average_rate=1)
+
+		term_imp = termextract.core.term_importance(frequency, LR)
+
+		data_collection = collections.Counter(term_imp)
+		noun, value = data_collection.most_common()[0]
+		noun_p = termextract.core.modify_agglutinative_lang(noun)
+
+		# OPT1: show the most common word
+		output_word = noun_p
+		print ("extractor: running termextract...: "+noun_p)
+			
+	print ("extractor: "+output_word+" written to data/keyword")
 	file = open('data/keyword','w')
 	file.write(output_word)
 	file.close()
