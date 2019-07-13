@@ -37,9 +37,6 @@ while True:
 	text_hash = hashlib.md5(text.encode("utf-8")).hexdigest()
 	if text_hash == text_hash_old:
 		print ("extractor: INFO: data/text not changed. sleep...")
-		file = open('data/keyword','w')
-		file.write('')
-		file.close()
 		end = time.time()
 		time.sleep(sleep_time-(end-start))
 		continue
