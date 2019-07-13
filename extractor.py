@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 task : #4 TextデータからKeywordを抽出する
 """
@@ -40,7 +41,7 @@ while True:
 		text_f = text.replace('\n',' ')
 
 	# TODO: randomly pick up one keyword and print it out
-	list = open('dict/keyword3.csv',encoding='utf-8',mode='r').read()
+	list = open('dict/keyword4.csv',encoding='utf-8',mode='r').read()
 
 	output_word=''
 	for word in list.split('\n'):
